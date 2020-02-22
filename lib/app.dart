@@ -10,16 +10,23 @@ class App extends StatelessWidget {
       title: 'Adaptive Layouts',
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: Scaffold(
-        appBar: AppBar(title: Text('Adaptive Layouts')),
-        body: Center(child: Text('Builder Demo')),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Scaffold.of(context).showSnackBar(
-              SnackBar(
-                content: Text('SNACKBAR!'),
-              ));
-          }),
-        )
-      );  
+        appBar: AppBar(
+          title: Text(
+            'Adaptive Layouts'
+          )
+        ),
+        body: Center(
+          child: Text(
+            'Builder Demo'
+          )
+        ),
+        floatingActionButton: Builder(builder: (context) {
+          return FloatingActionButton(onPressed: () {
+            Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text('SNACKBAR!')));
+          });
+        })
+      )
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/welcome.dart';
 
 class VerticalLayout extends StatelessWidget {
 
@@ -6,6 +7,8 @@ class VerticalLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.blue);
+    // return Container(color: Colors.blue)
+    return Welcome();
   }
 }
+

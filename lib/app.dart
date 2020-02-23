@@ -1,32 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'screens/entry_list.dart';
+import 'screens/create_entry.dart';
+
 class App extends StatelessWidget {
 
-  const App({Key key}) : super(key: key);
+  final String title;
+
+  static final routes = {
+    EntryList.routeName: (context ) => EntryList(),
+    CreateEntry.routeName: (context) => CreateEntry()
+  };
+
+  const App({Key key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Adaptive Layouts',
+      title: title,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'Adaptive Layouts'
-          )
-        ),
-        body: Center(
-          child: Text(
-            'Builder Demo'
-          )
-        ),
-        floatingActionButton: Builder(builder: (context) {
-          return FloatingActionButton(onPressed: () {
-            Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text('SNACKBAR!')));
-          });
-        })
-      )
+      routes: routes,
     );
   }
 }

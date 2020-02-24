@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'screens/entry_list.dart';
 import 'screens/create_entry.dart';
@@ -25,4 +26,10 @@ class App extends StatelessWidget {
       routes: routes,
     );
   }
+}
+
+void printKeys() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  print(prefs.getKeys());
+
 }

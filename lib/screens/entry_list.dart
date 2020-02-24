@@ -6,7 +6,6 @@ import '../layouts/horizontal_layout.dart';
 import '../layouts/vertical_layout.dart';
 
 class EntryList extends StatelessWidget {
-  // TODO: Get data, then return either the welcome component or adaptive layout
 
   static const routeName = '/';
 

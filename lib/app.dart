@@ -8,7 +8,7 @@ class App extends StatelessWidget {
   final String title;
 
   static final routes = {
-    EntryList.routeName: (context ) => EntryList(),
+    EntryList.routeName: (context) => EntryList(),
     CreateEntry.routeName: (context) => CreateEntry()
   };
 
@@ -18,7 +18,10 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.deepPurpleAccent
+      ),
       routes: routes,
     );
   }

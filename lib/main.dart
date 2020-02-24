@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'app.dart';
 
 void main() {
-  const String title = 'Pup Memories';
+  const String title = 'Paw Prints';
 
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([

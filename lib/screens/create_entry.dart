@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/entry_form.dart';
+import '../components/settings_drawer.dart';
+
 class CreateEntry extends StatelessWidget {
 
   static const routeName = 'createEntry';
@@ -14,10 +17,8 @@ class CreateEntry extends StatelessWidget {
           'New Memory'
         )
       ),
-      body: Container(
-        child: Text('Form'),
-        alignment: Alignment.center,
-      )
+      endDrawer: SettingsDrawer(),
+      body: EntryForm()
     );
   }
 }

@@ -13,10 +13,9 @@ class Welcome extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: padding(context)),
           child: Text(
-            'Track the moments that matter most.',
+            'Your pets are family members too.\nTrack the moments that matter most.',
             style: Theme.of(context).textTheme.headline,
-            textAlign: TextAlign.center,
-            
+            textAlign: TextAlign.center
           ),
         ),
         Expanded(

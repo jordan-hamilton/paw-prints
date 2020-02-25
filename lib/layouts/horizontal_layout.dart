@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../components/welcome.dart';
 
 class HorizontalLayout extends StatelessWidget {
-  
+
   const HorizontalLayout({Key key}) : super(key: key);
 
   @override

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'centered_image.dart';
 
 class Welcome extends StatelessWidget {
-  
+
   const Welcome({Key key}) : super(key: key);
 
   @override

@@ -9,7 +9,7 @@ class EntryList extends StatelessWidget {
 
   static const routeName = '/';
 
-  EntryList({Key key}) : super(key: key);
+  const EntryList({Key key}) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {

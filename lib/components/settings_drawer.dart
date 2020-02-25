@@ -4,9 +4,7 @@ import '../app.dart';
 
 class SettingsDrawer extends StatefulWidget {
 
-  final void Function() themeSwitcher;
-
-  const SettingsDrawer({Key key, this.themeSwitcher}) : super(key: key);
+  const SettingsDrawer({Key key}) : super(key: key);
 
   @override
   _SettingsDrawerState createState() => _SettingsDrawerState();
@@ -14,9 +12,9 @@ class SettingsDrawer extends StatefulWidget {
 
 class _SettingsDrawerState extends State<SettingsDrawer> {
 
-  bool getDarkModeStatus() => Theme.of(context).brightness == Brightness.dark ? true : false;
+  bool _getDarkModeStatus() => Theme.of(context).brightness == Brightness.dark ? true : false;
 
-  void changeTheme(AppState appState) => appState.toggleTheme();
+  void _toggleTheme(AppState appState) => appState.toggleTheme();
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +39,8 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
           SwitchListTile(
             secondary: Icon(Icons.settings_brightness),
             title: Text('Dark Mode'),
-            value: getDarkModeStatus(),
-            onChanged: (value) => changeTheme(appState),
+            value: _getDarkModeStatus(),
+            onChanged: (value) => _toggleTheme(appState),
           ),
         ],
       )

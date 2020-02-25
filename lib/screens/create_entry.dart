@@ -6,8 +6,9 @@ import '../components/settings_drawer.dart';
 class CreateEntry extends StatelessWidget {
 
   static const routeName = 'createEntry';
+  final void Function() themeSwitcher;
 
-  const CreateEntry({Key key}) : super(key: key);
+  const CreateEntry({Key key, this.themeSwitcher}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class CreateEntry extends StatelessWidget {
           'New Memory'
         )
       ),
-      endDrawer: SettingsDrawer(),
+      endDrawer: SettingsDrawer(themeSwitcher: themeSwitcher),
       body: EntryForm()
     );
   }

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class SettingsDrawer extends StatefulWidget {
 
-  const SettingsDrawer({Key key}) : super(key: key);
+  final void Function() themeSwitcher;
+
+  const SettingsDrawer({Key key, this.themeSwitcher}) : super(key: key);
 
   @override
   _SettingsDrawerState createState() => _SettingsDrawerState();
@@ -10,7 +12,9 @@ class SettingsDrawer extends StatefulWidget {
 
 class _SettingsDrawerState extends State<SettingsDrawer> {
 
-  bool _darkMode = false;
+  bool getDarkModeStatus() {
+    return Theme.of(context).brightness == Brightness.dark ? true : false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
           SwitchListTile(
             secondary: Icon(Icons.settings_brightness),
             title: Text('Dark Mode'),
-            value: _darkMode,
+            value: getDarkModeStatus(),
             onChanged: changeTheme,
           ),
         ],
@@ -41,8 +45,8 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
   }
 
   void changeTheme(bool value) {
-    setState(() {
-      _darkMode = value;
-    });
+    widget.themeSwitcher();
   }
+
+  
 }

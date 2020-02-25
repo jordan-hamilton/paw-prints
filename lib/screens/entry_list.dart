@@ -8,19 +8,19 @@ import '../layouts/vertical_layout.dart';
 class EntryList extends StatelessWidget {
 
   static const routeName = '/';
+  final String title;
+  final void Function() themeSwitcher;
 
-  const EntryList({Key key}) : super(key: key);
+  EntryList({Key key, this.themeSwitcher, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Paw Prints'
-        ),
+        title: Text(title),
       ),
       body: LayoutBuilder(builder: layoutPicker),
-      endDrawer: SettingsDrawer(),
+      endDrawer: SettingsDrawer(themeSwitcher: themeSwitcher),
       floatingActionButton: FloatingActionButton(
         onPressed: () => pushCreateEntry(context),
         child: Icon(Icons.note_add) 

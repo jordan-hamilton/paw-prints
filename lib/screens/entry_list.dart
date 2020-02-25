@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './create_entry.dart';
+import 'create_entry.dart';
 import '../components/settings_drawer.dart';
 import '../layouts/horizontal_layout.dart';
 import '../layouts/vertical_layout.dart';
@@ -8,19 +8,17 @@ import '../layouts/vertical_layout.dart';
 class EntryList extends StatelessWidget {
 
   static const routeName = '/';
-  final String title;
-  final void Function() themeSwitcher;
 
-  EntryList({Key key, this.themeSwitcher, this.title}) : super(key: key);
+  EntryList({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text('Paw Prints'),
       ),
       body: LayoutBuilder(builder: layoutPicker),
-      endDrawer: SettingsDrawer(themeSwitcher: themeSwitcher),
+      endDrawer: SettingsDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => pushCreateEntry(context),
         child: Icon(Icons.note_add) 

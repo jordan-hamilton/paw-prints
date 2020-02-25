@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'screens/entry_list.dart';
 import 'screens/create_entry.dart';
+import 'screens/entry_list.dart';
 
 class App extends StatefulWidget {
 
@@ -12,19 +12,25 @@ class App extends StatefulWidget {
   const App({Key key, @required this.title, @required this.prefs}) : super(key: key);
 
   @override
-  _AppState createState() => _AppState(title: title);
+  AppState createState() => AppState();
 }
 
-class _AppState extends State<App> {
+class AppState extends State<App> {
 
-  final String title;
-
-  _AppState({this.title});
+  final routes = {
+    EntryList.routeName: (context) => EntryList(),
+    CreateEntry.routeName: (context) => CreateEntry()
+  };
 
   static const DARK_MODE_KEY = 'darkMode';
   bool get darkMode => widget.prefs.getBool(DARK_MODE_KEY) ?? false;
 
   Brightness appBrightness;
+
+  void initState() {
+    super.initState();
+    appBrightness = darkMode ? Brightness.dark : Brightness.light;
+  }
 
   void toggleTheme() {
     setState( () {
@@ -35,7 +41,6 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.prefs.getBool(DARK_MODE_KEY));
     return MaterialApp(
       title: widget.title,
       theme: ThemeData(
@@ -43,10 +48,7 @@ class _AppState extends State<App> {
         accentColor: Colors.deepPurpleAccent,
         brightness: appBrightness
       ),
-      routes: {
-        EntryList.routeName: (context) => EntryList(themeSwitcher: toggleTheme, title: title),
-        CreateEntry.routeName: (context) => CreateEntry()
-      },
+      routes: routes
     );
   }
 

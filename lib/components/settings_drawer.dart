@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../app.dart';
+
 class SettingsDrawer extends StatefulWidget {
 
   final void Function() themeSwitcher;
@@ -12,12 +14,15 @@ class SettingsDrawer extends StatefulWidget {
 
 class _SettingsDrawerState extends State<SettingsDrawer> {
 
-  bool getDarkModeStatus() {
-    return Theme.of(context).brightness == Brightness.dark ? true : false;
-  }
+  bool getDarkModeStatus() => Theme.of(context).brightness == Brightness.dark ? true : false;
+
+  void changeTheme(AppState appState) => appState.toggleTheme();
 
   @override
   Widget build(BuildContext context) {
+
+    AppState appState = context.findAncestorStateOfType<AppState>();
+
     return Drawer(
       child: ListView(
         children: <Widget>[
@@ -37,16 +42,10 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
             secondary: Icon(Icons.settings_brightness),
             title: Text('Dark Mode'),
             value: getDarkModeStatus(),
-            onChanged: changeTheme,
+            onChanged: (value) => changeTheme(appState),
           ),
         ],
       )
     );
-  }
-
-  void changeTheme(bool value) {
-    widget.themeSwitcher();
-  }
-
-  
+  }  
 }

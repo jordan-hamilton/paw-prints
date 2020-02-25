@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'centered_image.dart';
 
 class Welcome extends StatelessWidget {

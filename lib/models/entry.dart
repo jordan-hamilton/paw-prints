@@ -1,9 +1,9 @@
 class Entry {
-  String title;
-  String description;
-  DateTime dateTime;
-  double rating;
-  String toString() {
-    return 'Title: $title, Description: $description, Time: $dateTime, Rating: $rating';
-  }
+  final String title;
+  final String description;
+  final double rating;
+  final DateTime dateTime;
+
+  const Entry({this.title, this.description, this.rating, this.dateTime});
+  
 }

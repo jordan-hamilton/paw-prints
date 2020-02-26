@@ -7,6 +7,7 @@ class DatabaseManager {
 
   static const String DATABASE_FILENAME = 'journal.sqlite3.db';
   static const String SQL_CREATE_SCHEMA = 'CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT NOT NULL, rating INTEGER NOT NULL, date TEXT NOT NULL);';
+  static const String SQL_DROP_TABLE = 'DROP TABLE IF EXISTS journal_entries;';
   static const String SQL_INSERT = 'INSERT INTO journal_entries(title, description, rating, date) VALUES(?, ?, ?, ?);';
   static const String SQL_SELECT = 'SELECT * FROM journal_entries;';
 
@@ -32,7 +33,6 @@ class DatabaseManager {
   }
 
   static void createTables(Database db, String sql) async {
-    await db.execute('DROP TABLE IF EXISTS journal_entries;');
     await db.execute(sql);
   }
 

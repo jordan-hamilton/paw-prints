@@ -2,17 +2,32 @@ import 'package:flutter/material.dart';
 
 import 'create_entry.dart';
 import '../components/settings_drawer.dart';
+import '../db/database_manager.dart';
 import '../layouts/horizontal_layout.dart';
 import '../layouts/vertical_layout.dart';
+import '../models/entry.dart';
 
-class EntryList extends StatelessWidget {
+class EntryList extends StatefulWidget {
 
   static const routeName = '/';
 
   const EntryList({Key key}) : super(key: key); 
 
   @override
+  _EntryListState createState() => _EntryListState();
+}
+
+class _EntryListState extends State<EntryList> {
+  
+  void loadEntries() async {
+    final databaseManager = DatabaseManager.getInstance();
+    List<Entry> entries = await databaseManager.getEntries();
+    print(entries);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    loadEntries();
     return Scaffold(
       appBar: AppBar(
         title: Text('Paw Prints'),

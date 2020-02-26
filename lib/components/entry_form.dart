@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../models/entry.dart';
+import '../components/dropdown_rating_form_field.dart';
+import '../db/database_manager.dart';
+import '../db/entry_dto.dart';
 
 class EntryForm extends StatefulWidget {
   @override
@@ -10,7 +12,9 @@ class EntryForm extends StatefulWidget {
 class _EntryFormState extends State<EntryForm> {
   
   final _formKey = GlobalKey<FormState>();
-  final journalEntry = Entry();
+  final newEntry = EntryDTO();
+
+  void addDateToEntry() => newEntry.dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext build) {
@@ -37,16 +41,9 @@ class _EntryFormState extends State<EntryForm> {
           labelText: 'Title',
           border: OutlineInputBorder()
         ),
-        onSaved: (value) {
-          journalEntry.title = value;
-        },
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter a title for this memory.';
-          } else {
-            return null;
-          }
-        },
+        onSaved: (value) => newEntry.title = value,
+        validator: (value) =>
+          value.isEmpty ? 'Please enter a title for this memory.' : null
       ),
       SizedBox(height: 10),
       TextFormField(
@@ -54,30 +51,42 @@ class _EntryFormState extends State<EntryForm> {
           labelText: 'Description',
           border: OutlineInputBorder()
         ),
-        onSaved: (value) {
-          journalEntry.description = value;
-        },
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Please enter a description of this memory.';
-          } else {
-            return null;
-          }
-        },
         keyboardType: TextInputType.multiline,
         minLines: 3,
-        maxLines: null
+        maxLines: null,
+        onSaved: (value) => newEntry.description = value,
+        validator: (value) =>
+          value.isEmpty ? 'Please enter a description of this memory.' : null
       ),
       SizedBox(height: 10),
-      RaisedButton(
-        onPressed: () {
-          if (_formKey.currentState.validate()) {
-            _formKey.currentState.save();
-            print(journalEntry.toString());
-            Navigator.of(context).pop();
-          }
-        },
-        child: Text('Save this memory')
+      DropdownRatingFormField(
+        maxRating: 5,
+        onSaved: (value) => newEntry.rating = value,
+        validator: (value) =>
+          value == null ? 'Please rate this memory' : null
+      ),
+      SizedBox(height: 10),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          RaisedButton(
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                _formKey.currentState.save();
+                addDateToEntry();
+                final databaseManager = DatabaseManager.getInstance();
+                databaseManager.saveEntry(dto: newEntry);
+                Navigator.of(context).pop();
+              }
+            },
+            child: Text('Save this memory')
+          ),
+          RaisedButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('Cancel'),
+            color: Colors.red
+          )
+        ],
       )
     ];
   }

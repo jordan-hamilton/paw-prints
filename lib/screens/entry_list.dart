@@ -22,12 +22,10 @@ class _EntryListState extends State<EntryList> {
   void loadEntries() async {
     final databaseManager = DatabaseManager.getInstance();
     List<Entry> entries = await databaseManager.getEntries();
-    print(entries);
   }
 
   @override
   Widget build(BuildContext context) {
-    loadEntries();
     return Scaffold(
       appBar: AppBar(
         title: Text('Paw Prints'),

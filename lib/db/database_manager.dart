@@ -51,7 +51,8 @@ class DatabaseManager {
         title: record['title'],
         description: record['description'],
         rating: record['rating'],
-        dateTime: DateTime.parse(record['date']));
+        dateTime: DateTime.parse(record['date'])
+      );
     }).toList();
     return entries;
   }

@@ -19,7 +19,7 @@ class _EntryFormState extends State<EntryForm> {
   @override
   Widget build(BuildContext build) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(50),
       child: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -34,7 +34,7 @@ class _EntryFormState extends State<EntryForm> {
 
   List<Widget> formFields(BuildContext context) {
     return [
-      SizedBox(height: 5),
+      SizedBox(height: 10),
       TextFormField(
         autofocus: true,
         decoration: InputDecoration(

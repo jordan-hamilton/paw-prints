@@ -33,13 +33,15 @@ class EntryContentsView extends StatelessWidget {
         children: [
           SizedBox(height: 10),
           stars(),
+          SizedBox(height: 10),
+          Text('${entry.dateTime}'),
           Container(
             child: Text(
               '${entry.description}',
               style: Theme.of(context).textTheme.headline
             ),
-            padding: EdgeInsets.all(10),
-            alignment: Alignment.topLeft,
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            alignment: Alignment.centerLeft,
           ),
         ],
       ),

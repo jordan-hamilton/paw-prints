@@ -8,6 +8,16 @@ class EntryContentsView extends StatelessWidget {
 
   const EntryContentsView({Key key, this.entry}) : super(key: key);
 
+  Widget stars() {
+    final stars = List<Widget>.generate(entry.rating, (i) {
+      return Icon(Icons.star);
+    });
+    return Row(
+      children: stars,
+      mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -17,16 +27,22 @@ class EntryContentsView extends StatelessWidget {
       );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Center(
-          child: Text('${entry.description}'),
-        ),
-        Center(
-          child: Text(entry.rating.toString()),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(height: 10),
+          stars(),
+          Container(
+            child: Text(
+              '${entry.description}',
+              style: Theme.of(context).textTheme.headline
+            ),
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.topLeft,
+          ),
+        ],
+      ),
     );
   }
 }

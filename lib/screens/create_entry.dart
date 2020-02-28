@@ -22,7 +22,3 @@ class CreateEntry extends StatelessWidget {
     );
   }
 }
-
-void backToEntryList(BuildContext context) {
-  Navigator.of(context).pop();
-}

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'screens/create_entry.dart';
-import 'screens/entry_list.dart';
+import 'screens/entry_contents.dart';
+import 'screens/entries_list.dart';
 
 class App extends StatefulWidget {
 
@@ -18,8 +19,9 @@ class App extends StatefulWidget {
 class AppState extends State<App> {
 
   final routes = {
-    EntryList.routeName: (context) => EntryList(),
-    CreateEntry.routeName: (context) => CreateEntry()
+    EntriesList.routeName: (context) => EntriesList(),
+    CreateEntry.routeName: (context) => CreateEntry(),
+    EntryContents.routeName: (context) => EntryContents()
   };
 
   static const DARK_MODE_KEY = 'darkMode';

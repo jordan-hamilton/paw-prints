@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../models/entry.dart';
 import '../models/memories.dart';
 
 class EntriesListView extends StatelessWidget {
 
   final Memories memories;
+  final void Function(BuildContext context, Entry entry) onTap;
 
-  const EntriesListView({Key key, this.memories}) : super(key: key);
+  const EntriesListView({Key key, @required this.memories, @required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,9 @@ class EntriesListView extends StatelessWidget {
       itemCount: memories.entryCount,
       itemBuilder: (context, index) {
         return ListTile(
-          leading: Icon(Icons.calendar_view_day),
-          trailing: Icon(Icons.star),
+          trailing: Icon(Icons.navigate_next),
           title: Text('${memories.entries[index].title}'),
+          onTap: () => onTap(context, memories.entries[index])
         );
       }
     );

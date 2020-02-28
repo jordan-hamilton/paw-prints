@@ -9,17 +9,17 @@ import '../layouts/vertical_layout.dart';
 import '../models/entry.dart';
 import '../models/memories.dart';
 
-class EntryList extends StatefulWidget {
+class EntriesList extends StatefulWidget {
 
   static const routeName = '/';
 
-  const EntryList({Key key}) : super(key: key); 
+  const EntriesList({Key key}) : super(key: key); 
 
   @override
-  _EntryListState createState() => _EntryListState();
+  _EntriesListState createState() => _EntriesListState();
 }
 
-class _EntryListState extends State<EntryList> {
+class _EntriesListState extends State<EntriesList> {
 
   Memories memories;
 
@@ -54,19 +54,6 @@ class _EntryListState extends State<EntryList> {
     );
   }
 
-  Widget memoryList(BuildContext context) {
-    return ListView.builder(
-      itemCount: memories.entryCount,
-      itemBuilder: (context, index) {
-        return ListTile(
-          leading: Icon(Icons.calendar_view_day),
-          trailing: Icon(Icons.star),
-          title: Text('${memories.entries[index].title}'),
-        );
-      }
-    );
-  }
-
   Widget layoutPicker(BuildContext context, BoxConstraints constraints) {
     if (memories == null) {
       return CircularProgressIndicator();
@@ -76,9 +63,5 @@ class _EntryListState extends State<EntryList> {
     return constraints.maxWidth < 800 ? VerticalLayout(memories: memories) : HorizontalLayout(memories: memories);
   }
 }
-
-// Widget layoutPicker(BuildContext context, BoxConstraints constraints) {
-//   constraints.maxWidth < 800 ? VerticalLayout() : HorizontalLayout();
-// }
 
 void pushCreateEntry(BuildContext context) => Navigator.of(context).pushNamed(CreateEntry.routeName);

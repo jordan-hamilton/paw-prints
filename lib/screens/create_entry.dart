@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../components/entry_form.dart';
+import '../components/create_entry_form.dart';
 import '../components/settings_drawer.dart';
 
 class CreateEntry extends StatelessWidget {
@@ -18,7 +18,7 @@ class CreateEntry extends StatelessWidget {
         )
       ),
       endDrawer: SettingsDrawer(),
-      body: EntryForm()
+      body: CreateEntryForm()
     );
   }
 }

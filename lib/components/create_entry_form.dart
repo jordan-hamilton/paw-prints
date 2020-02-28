@@ -4,12 +4,12 @@ import '../components/dropdown_rating_form_field.dart';
 import '../db/database_manager.dart';
 import '../db/entry_dto.dart';
 
-class EntryForm extends StatefulWidget {
+class CreateEntryForm extends StatefulWidget {
   @override
-  _EntryFormState createState() => _EntryFormState();
+  _CreateEntryFormState createState() => _CreateEntryFormState();
 }
 
-class _EntryFormState extends State<EntryForm> {
+class _CreateEntryFormState extends State<CreateEntryForm> {
   
   final _formKey = GlobalKey<FormState>();
   final newEntry = EntryDTO();

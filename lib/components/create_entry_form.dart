@@ -60,7 +60,7 @@ class _CreateEntryFormState extends State<CreateEntryForm> {
       ),
       SizedBox(height: 10),
       DropdownRatingFormField(
-        maxRating: 5,
+        maxRating: 4,
         onSaved: (value) => newEntry.rating = value,
         validator: (value) =>
           value == null ? 'Please rate this memory' : null

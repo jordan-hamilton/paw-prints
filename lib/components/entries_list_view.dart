@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/entry.dart';
 import '../models/memories.dart';
@@ -18,9 +19,14 @@ class EntriesListView extends StatelessWidget {
         return ListTile(
           trailing: Icon(Icons.navigate_next),
           title: Text('${memories.entries[index].title}'),
+          subtitle: Text(parseDate(memories.entries[index].dateTime)),
           onTap: () => onTap(context, memories.entries[index])
         );
       }
     );
   }
+}
+
+String parseDate(DateTime dateTime) {
+  return '${DateFormat("EEEE',' MMMM d',' y 'at' h':'m a").format(dateTime)}';
 }

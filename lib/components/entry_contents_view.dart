@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/entry.dart';
 
@@ -34,7 +35,8 @@ class EntryContentsView extends StatelessWidget {
           SizedBox(height: 10),
           stars(),
           SizedBox(height: 10),
-          Text('${entry.dateTime}'),
+          Text(parseDate(entry.dateTime)),
+          SizedBox(height: 10),
           Container(
             child: Text(
               '${entry.description}',
@@ -47,4 +49,8 @@ class EntryContentsView extends StatelessWidget {
       ),
     );
   }
+}
+
+String parseDate(DateTime dateTime) {
+  return '${DateFormat("EEEE',' MMMM d',' y 'at' h':'m a").format(dateTime)}';
 }

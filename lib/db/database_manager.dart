@@ -6,7 +6,6 @@ import '../models/entry.dart';
 class DatabaseManager {
 
   static const String DATABASE_FILENAME = 'journal.sqlite3.db';
-  static const String SQL_CREATE_SCHEMA = 'CREATE TABLE IF NOT EXISTS journal_entries(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, description TEXT NOT NULL, rating INTEGER NOT NULL, date TEXT NOT NULL);';
   static const String SQL_DROP_TABLE = 'DROP TABLE IF EXISTS journal_entries;';
   static const String SQL_INSERT = 'INSERT INTO journal_entries(title, description, rating, date) VALUES(?, ?, ?, ?);';
   static const String SQL_SELECT = 'SELECT * FROM journal_entries;';
@@ -22,11 +21,11 @@ class DatabaseManager {
     return _instance;
   }
 
-  static Future initialize() async {
+  static Future initialize(String schema) async {
     final db = await openDatabase(DATABASE_FILENAME,
       version: 1,
       onCreate: (Database db, int version) async {
-        createTables(db, SQL_CREATE_SCHEMA);
+        createTables(db, schema);
       }
     );
     _instance = DatabaseManager._(database: db);

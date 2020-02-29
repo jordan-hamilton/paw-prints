@@ -44,7 +44,6 @@ class _EntriesListState extends State<EntriesList> {
       appBar: AppBar(
         title: Text('Paw Prints'),
       ),
-      // body: layoutPicker(context),
       body: LayoutBuilder(builder: layoutPicker),
       endDrawer: SettingsDrawer(),
       floatingActionButton: FloatingActionButton(

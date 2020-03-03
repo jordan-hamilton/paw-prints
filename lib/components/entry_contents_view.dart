@@ -52,5 +52,5 @@ class EntryContentsView extends StatelessWidget {
 }
 
 String parseDate(DateTime dateTime) {
-  return '${DateFormat("EEEE',' MMMM d',' y 'at' h':'m a").format(dateTime)}';
+  return '${DateFormat("EEEE',' MMMM d',' y 'at' h':'mm a").format(dateTime)}';
 }

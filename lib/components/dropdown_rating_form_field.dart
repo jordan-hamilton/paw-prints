@@ -10,42 +10,38 @@
 import 'package:flutter/material.dart';
 
 class DropdownRatingFormField extends StatefulWidget {
+  final int? maxRating;
+  final void Function(dynamic)? onSaved;
+  final String? Function(dynamic)? validator;
 
-  final int maxRating;
-  final void Function(dynamic) onSaved;
-  final String Function(dynamic) validator;
-
-  DropdownRatingFormField({Key key, this.maxRating, this.onSaved, this.validator}) : super(key: key);
+  const DropdownRatingFormField(
+      {Key? key, this.maxRating, this.onSaved, this.validator})
+      : super(key: key);
 
   @override
   DropdownRatingFormFieldState createState() => DropdownRatingFormFieldState();
 }
 
 class DropdownRatingFormFieldState extends State<DropdownRatingFormField> {
-
-  int selectedValue;
+  int? selectedValue;
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
-      value: selectedValue,
-      items:  ratingMenuItems(maxRating: widget.maxRating),
-      onChanged: (value) {
-        setState( () => selectedValue = value );
-      },
-      decoration: InputDecoration(
-        labelText: 'Rating',
-        border: OutlineInputBorder()
-      ),
-      validator: widget.validator,
-        onSaved: widget.onSaved
-    );
+        value: selectedValue,
+        items: ratingMenuItems(maxRating: widget.maxRating!),
+        onChanged: (dynamic value) {
+          setState(() => selectedValue = value);
+        },
+        decoration: const InputDecoration(
+            labelText: 'Rating', border: OutlineInputBorder()),
+        validator: widget.validator,
+        onSaved: widget.onSaved);
   }
 
-  List<DropdownMenuItem> ratingMenuItems({int maxRating}) {
+  List<DropdownMenuItem> ratingMenuItems({required int maxRating}) {
     return List<DropdownMenuItem>.generate(maxRating, (i) {
       return DropdownMenuItem(value: i + 1, child: Text('${i + 1}'));
     });
   }
-
 }

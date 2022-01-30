@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'centered_image.dart';
 
 class Welcome extends StatelessWidget {
-
-  const Welcome({Key key}) : super(key: key);
+  const Welcome({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +13,14 @@ class Welcome extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: padding(context)),
           child: Text(
-            'Your pets are family members too.\nTrack the moments that matter most.',
-            style: Theme.of(context).textTheme.headline,
-            textAlign: TextAlign.center
-          ),
+              'Your pets are family members too.\nTrack the moments that matter most.',
+              style: Theme.of(context).textTheme.headline5,
+              textAlign: TextAlign.center),
         ),
         Expanded(
           child: CenteredImage(
-            image: Image.asset('assets/images/paw.png',
-            fit: BoxFit.contain),
-            padding: padding(context)
-          ),
+              image: Image.asset('assets/images/paw.png', fit: BoxFit.contain),
+              padding: padding(context)),
         ),
       ],
     );

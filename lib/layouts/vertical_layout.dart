@@ -7,9 +7,9 @@ import '../screens/entry_contents.dart';
 
 class VerticalLayout extends StatelessWidget {
 
-  final Memories memories;
+  final Memories? memories;
 
-  const VerticalLayout({Key key, @required this.memories}) : super(key: key);
+  const VerticalLayout({Key? key, required this.memories}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

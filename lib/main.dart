@@ -6,10 +6,9 @@ import 'app.dart';
 import 'db/database_manager.dart';
 
 void main() async {
-  
   const title = 'Paw Prints';
-  const SCHEMA_PATH = 'assets/schema.sql';
-  
+  const schemaPath = 'assets/schema.sql';
+
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([
@@ -18,13 +17,8 @@ void main() async {
     DeviceOrientation.landscapeRight
   ]);
 
-  String schema = await rootBundle.loadString(SCHEMA_PATH);
+  String schema = await rootBundle.loadString(schemaPath);
   await DatabaseManager.initialize(schema);
-  
-  runApp(
-    App(
-      title: title,
-      prefs: await SharedPreferences.getInstance()
-    )
-  );
+
+  runApp(App(title: title, prefs: await SharedPreferences.getInstance()));
 }

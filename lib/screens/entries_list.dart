@@ -10,29 +10,27 @@ import '../models/entry.dart';
 import '../models/memories.dart';
 
 class EntriesList extends StatefulWidget {
-
   static const routeName = '/';
 
-  const EntriesList({Key key}) : super(key: key); 
+  const EntriesList({Key? key}) : super(key: key);
 
   @override
   _EntriesListState createState() => _EntriesListState();
 }
 
 class _EntriesListState extends State<EntriesList> {
-
-  Memories memories;
+  Memories? memories;
 
   @override
   void initState() {
     super.initState();
     loadEntries();
   }
-  
+
   void loadEntries() async {
     final databaseManager = DatabaseManager.getInstance();
     List<Entry> entries = await databaseManager.getEntries();
-    setState( () {
+    setState(() {
       memories = Memories(entries: entries);
     });
   }
@@ -42,25 +40,27 @@ class _EntriesListState extends State<EntriesList> {
     loadEntries();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Paw Prints'),
+        title: const Text('Paw Prints'),
       ),
       body: LayoutBuilder(builder: layoutPicker),
-      endDrawer: SettingsDrawer(),
+      endDrawer: const SettingsDrawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => pushCreateEntry(context),
-        child: Icon(Icons.note_add) 
-      ),
+          onPressed: () => pushCreateEntry(context),
+          child: const Icon(Icons.note_add)),
     );
   }
 
   Widget layoutPicker(BuildContext context, BoxConstraints constraints) {
     if (memories == null) {
-      return CircularProgressIndicator();
-    } else if (memories.entryCount == 0) {
-      return Welcome();
+      return const CircularProgressIndicator();
+    } else if (memories!.entryCount == 0) {
+      return const Welcome();
     }
-    return constraints.maxWidth < 800 ? VerticalLayout(memories: memories) : HorizontalLayout(memories: memories);
+    return constraints.maxWidth < 800
+        ? VerticalLayout(memories: memories)
+        : HorizontalLayout(memories: memories);
   }
 }
 
-void pushCreateEntry(BuildContext context) => Navigator.of(context).pushNamed(CreateEntry.routeName);
+void pushCreateEntry(BuildContext context) =>
+    Navigator.of(context).pushNamed(CreateEntry.routeName);

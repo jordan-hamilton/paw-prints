@@ -1,6 +1,6 @@
 class EntryDTO {
-  String title;
-  String description;
-  int rating;
-  DateTime dateTime;
+  String? title;
+  String? description;
+  int? rating;
+  DateTime? dateTime;
 }

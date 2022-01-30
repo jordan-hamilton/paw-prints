@@ -6,37 +6,37 @@ import 'screens/entry_contents.dart';
 import 'screens/entries_list.dart';
 
 class App extends StatefulWidget {
-
   final String title;
   final SharedPreferences prefs;
 
-  const App({Key key, @required this.title, @required this.prefs}) : super(key: key);
+  const App({Key? key, required this.title, required this.prefs})
+      : super(key: key);
 
   @override
   AppState createState() => AppState();
 }
 
 class AppState extends State<App> {
-
   final routes = {
-    EntriesList.routeName: (context) => EntriesList(),
-    CreateEntry.routeName: (context) => CreateEntry(),
-    EntryContents.routeName: (context) => EntryContents()
+    EntriesList.routeName: (context) => const EntriesList(),
+    CreateEntry.routeName: (context) => const CreateEntry(),
+    EntryContents.routeName: (context) => const EntryContents()
   };
 
-  static const DARK_MODE_KEY = 'darkMode';
-  bool get darkMode => widget.prefs.getBool(DARK_MODE_KEY) ?? false;
+  static const darkModeKey = 'darkMode';
+  bool get darkMode => widget.prefs.getBool(darkModeKey) ?? false;
 
-  Brightness appBrightness;
+  late Brightness appBrightness;
 
+  @override
   void initState() {
     super.initState();
     appBrightness = darkMode ? Brightness.dark : Brightness.light;
   }
 
   void toggleTheme() {
-    setState( () {
-      widget.prefs.setBool(DARK_MODE_KEY, !darkMode);
+    setState(() {
+      widget.prefs.setBool(darkModeKey, !darkMode);
       appBrightness = darkMode ? Brightness.dark : Brightness.light;
     });
   }
@@ -44,14 +44,11 @@ class AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: widget.title,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        accentColor: Colors.deepPurpleAccent,
-        brightness: appBrightness
-      ),
-      routes: routes
-    );
+        title: widget.title,
+        theme: ThemeData(
+            primarySwatch: Colors.deepPurple,
+            colorScheme:
+                const ColorScheme.light().copyWith(brightness: appBrightness)),
+        routes: routes);
   }
-
 }

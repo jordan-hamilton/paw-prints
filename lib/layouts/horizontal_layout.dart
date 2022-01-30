@@ -7,9 +7,9 @@ import '../models/memories.dart';
 
 class HorizontalLayout extends StatefulWidget {
 
-  final Memories memories;
+  final Memories? memories;
 
-  const HorizontalLayout({Key key, @required this.memories}) : super(key: key);
+  const HorizontalLayout({Key? key, required this.memories}) : super(key: key);
 
   @override
   _HorizontalLayoutState createState() => _HorizontalLayoutState();
@@ -17,7 +17,7 @@ class HorizontalLayout extends StatefulWidget {
 
 class _HorizontalLayoutState extends State<HorizontalLayout> {
 
-  Entry currentEntry;
+  Entry? currentEntry;
 
   void updateEntryContentsView(BuildContext context, Entry entry) {
     setState( () {
